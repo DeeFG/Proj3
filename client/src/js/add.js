@@ -63,16 +63,12 @@ $("#updatePatient").on("click", function(){
 
 
  function savePatient() {
-
   first = $("#first-input").val().trim();
   last = $("#last-input").val().trim();
   birth = $("#birth-input").val();
   gender = $("#gender-input").val();
   
-  console.log(gender);
 
-
-  console.log("extracted names");
 
  var testingChoice = getTestingChoice();
   console.log("Getting Testing Choice");

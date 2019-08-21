@@ -1,11 +1,30 @@
 module.exports = function (sequelize, DataTypes){
     var TestingOrdered= sequelize.define("TestingOrdered",{
-        TS: DataTypes.BOOLEAN,
-        ConfType: DataTypes.BOOLEAN,
-        DAT: DataTypes.BOOLEAN,
-        Elution: DataTypes.BOOLEAN,
-        Titer: DataTypes.BOOLEAN,
-        FullXM: DataTypes.BOOLEAN,
+        TS: { 
+          type: DataTypes.BOOLEAN, 
+          defaultValue: 0 
+        },
+        ConfType:{ 
+          type: DataTypes.BOOLEAN, 
+          defaultValue: 0 
+        },
+        DAT: { 
+          type: DataTypes.BOOLEAN, 
+          defaultValue: 0 
+        },
+        Elution: { 
+          type: DataTypes.BOOLEAN, 
+          defaultValue: 0 
+        },
+        Titer: { 
+          type: DataTypes.BOOLEAN, 
+          defaultValue: 0 
+        },
+        FullXM: { 
+          type: DataTypes.BOOLEAN, 
+          defaultValue: 0 
+        },
+       
     });
 
     TestingOrdered.associate = function(models){
@@ -18,3 +37,4 @@ module.exports = function (sequelize, DataTypes){
 
     return TestingOrdered;
 };
+

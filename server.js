@@ -8,7 +8,7 @@ var db = require("./models");
 
 
 // Define middleware here or  Sets up the Express app to handle data parsing
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -28,8 +28,10 @@ app.get("*", (req, res) => {
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync({ force:false }).then(function() {
+db.sequelize.sync({ force:false}).then(function() {
   app.listen(PORT, function() {
     console.log("`🌎 ==> API server now on port" + PORT);
   });
 });
+
+

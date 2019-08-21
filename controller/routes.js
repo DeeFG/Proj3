@@ -12,27 +12,26 @@ module.exports = function(app) {
 
     db.PatientDemographics.create({
       FirstName: req.body.FirstName,
-      LastName:req.body.LastName ,
-      birth:req.body.birth,
-      Gender:req.body.Gender
-    })
-      .then(function(result) {
-        res.json(result);
-      })
-      // .catch(function(err) {
-      //   res.sendStatus(500).end(err);
-      // });
-      // return result;
+      LastName: req.body.LastName,
+      birth: req.body.birth,
+      Gender: req.body.Gender
+    }).then(function(result) {
+      res.json(result);
+    });
+    // .catch(function(err) {
+    //   res.sendStatus(500).end(err);
+    // });
+    // return result;
   });
-//===================================={find all patients}=============================
-  
+  //===================================={find all patients}=============================
+
   app.get("/", function(req, res) {
     db.PatientDemographics.findAll({}).then(function(results) {
       console.log(results);
-      res.json({"patients":results});
+      res.json({ patients: results });
     });
   });
-//==============================={find One patient by ID }===========================
+  //==============================={find One patient by ID }===========================
   app.get("/api/patient/:id", function(req, res) {
     if (req.params.id) {
       db.PatientDemographics.findOne({
@@ -41,72 +40,59 @@ module.exports = function(app) {
         }
       }).then(function(results) {
         console.log(results);
-      res.json({"patient":results});
+        res.json({ patient: results });
       });
     } else {
-   
-      alert ("patient not found");
+      alert("patient not found");
     }
     console.log(req.params.id);
   });
 
+  //******************************{BLOOD BANK SIDE OPTIONS}*****************************
+  //******************************{update the testing}*****************************
 
-  
-//******************************{BLOOD BANK SIDE OPTIONS}*****************************
-//******************************{update the testing}*****************************
-
-
-
-app.put("/api/:id/updateTesting", function(req, res) {
-  ///cross join
-  // https://stackoverflow.com/questions/20460270/how-to-make-join-queries-using-sequelize-on-node-js
-  db.TestingOrdered.post(
-    {
-      TS:req.body.TS ,
-      ConfType:req.body.ConfType ,
-      DAT:req.body.DAT,
-      Elution:req.body.Elution ,
-      Titer:req.body.Titer ,
-      FullXM:req.body.FullXM ,
-    }
-    // {
-    //   where: {
-    //     id:req.params.id
-    //   }
-    // }
-  )
-    .then(function(dbpatientData) {
-      res.json(dbpatientData);
-    })
-    .catch(function(err) {
-      // Whenever a validation or flag fails, an error is thrown
-      // We can "catch" the error to prevent it from being "thrown", which could crash our node app
-      res.json(err);
-    });
-});
-  
-
-
-//******************************{update comment}*****************************
-
-
-
-//******************************{update timer}*****************************
-
-
-
-//******************************{Update Antibodies and comment}*****************************
-
-  app.put("/api/updateAntibodies", function(req, res) {
-    db.PatientData.update(
+  app.post("/api/:id/updateTesting", function(req, res) {
+    db.TestingOrdered.create(
       {
-      Antibody: req.body.antibody,
-      Comment: req.body.Comment,
-   
+        PatientDemographicId: req.params.id,
+        TS: req.body.TS,
+        ConfType: req.body.ConfType,
+        DAT: req.body.DAT,
+        Elution: req.body.Elution,
+        Titer: req.body.Titer,
+        FullXM: req.body.FullXM
       },
       {
         where: {
-          id:req.params.id
+          id: req.params.id
+        }
+      }
+    )
+      .then(function(updatedPatientData) {
+        res.json(updatedPatientData);
+      })
+      .catch(function(err) {
+        // Whenever a validation or flag fails, an error is thrown
+        // We can "catch" the error to prevent it from being "thrown", which could crash our node app
+        res.json(err);
+      });
+  });
+
+
+  //******************************{update timer}*****************************
+
+  //******************************{Update Antibodies and comment}*****************************
+
+  app.post("/api/:id/updateAntibodyComment", function(req, res) {
+    db.Antibody.create(
+      {
+        PatientDemographicId: req.params.id,
+        Antibody: req.body.antibody,
+        Comment: req.body.Comment
+      },
+      {
+        where: {
+          id: req.params.id
         }
       }
     )
@@ -119,13 +105,29 @@ app.put("/api/:id/updateTesting", function(req, res) {
         res.json(err);
       });
   });
-//******************************{Update  products}*****************************
+  //******************************{Update  products}*****************************
+  app.post("/api/:id/updateProducts", function(req, res) {
+    db.ProductsOrdered.create({
+      PatientDemographicId: req.params.id,
+      RedCell: req.body.RedCell,
+      Plasma: req.body.Plasma,
+      Plt: req.body.Plt,
+      Cryo: req.body.Cryo
+    })
+      .then(async function(updatedPatientData) {
+        console.log(updatedPatientData);
 
-  
+        res.json(updatedPatientData);
+      })
+      .catch(function(err) {
+        // Whenever a validation or flag fails, an error is thrown
+        // We can "catch" the error to prevent it from being "thrown", which could crash our node app
+        res.json(err);
+      });
+  });
 };
 
-
-// do the get 
-// when done modifying 
-// fill form 
+// do the get
+// when done modifying
+// fill form
 // sumbmit - put
