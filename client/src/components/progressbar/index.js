@@ -77,7 +77,7 @@ class ProgressRadial extends Component {
         stroke: {
           lineCap: "round"
         },
-        labels: ["Testing"]
+        labels: ["timer"]
       },
       series: [15]
     };

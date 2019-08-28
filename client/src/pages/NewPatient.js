@@ -1,41 +1,33 @@
 import React, { Component } from "react";
-import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
-import ProgressRadial from "../components/progressbar/index";
-import Nav from "../components/Nav/index"
-import Footer from "../components/Footer";
-import AdditionalInfo from "../components/AdditionalInfo";
+import { Input, FormBtn } from "../components/Form";
+import Nav from "../components/Nav/index";
+
+
 
 class NewPatient extends Component {
   state = {
-    books: [],
-    title: "",
-    author: "",
-    synopsis: ""
+    FirstName: "", 
+    LastName: "", 
+    birth: "" , 
+    Gender:""
   };
 
   componentDidMount() {
-    this.loadBooks();
+    this.savePatient();
   }
 
-  loadBooks = () => {
-    API.getBooks()
+  savePatient = () => {
+    API.createPatient()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ FirstName: "", LastName: "", birth: "" , Gender:""})
       )
       .catch(err => console.log(err));
   };
 
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
-      .catch(err => console.log(err));
-  };
+
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -46,13 +38,19 @@ class NewPatient extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
-      API.saveBook({
-        title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
+     if (this.state.FirstName && this.state.LastName && this.state.birth && this.state.Gender) {
+      API.createPatient({
+        FirstName: this.state.FirstName, 
+        LastName: this.state.LastName, 
+        birth: this.state.birth , 
+        Gender:this.state.Gender
       })
-        .then(res => this.loadBooks())
+        .then(res => console.log(({
+          FirstName: this.state.FirstName, 
+          LastName: this.state.LastName, 
+          birth: this.state.birth , 
+          Gender:this.state.Gender
+        })))
         .catch(err => console.log(err));
     }
   };
@@ -73,52 +71,42 @@ class NewPatient extends Component {
                 value={this.state.FirstName}
                 onChange={this.handleInputChange}
                 name="FirstName"
-                placeholder="First Name (required)"
+                placeholder="First Name"
               />
               <Input
                 value={this.state.LastName}
                 onChange={this.handleInputChange}
                 name="LastName"
-                placeholder="Last Name (required)"
+                placeholder="Last Name "
               />
                 <Input
+                  type="date"
                 value={this.state.birth}
                 onChange={this.handleInputChange}
                 name="birth"
-                placeholder="Birth Date ( required)"
+                placeholder="Birth Date "
               />
                 <Input
                 value={this.state.Gender}
                 onChange={this.handleInputChange}
                 name="Gender"
-                placeholder="Gender (required)"
+                placeholder=" M or F "
               />
-              <TextArea
-                value={this.state.synopsis}
-                onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
-              />
+             {/* <Chosen>
 
-              <Input
-                value={this.state.id}
-                onChange={this.handleInputChange}
-                name="id"
-                placeholder="Medical record Number (required)"
-              />
+             </Chosen> */}
+
         
               <FormBtn
-                disabled={!(this.state.author && this.state.title)}
+                disabled={!(this.state.FirstName && this.state.LastName && this.state.birth && this.state.Gender)}
                 onClick={this.handleFormSubmit}
               >
-                Submit Book
+                Save Patient
               </FormBtn>
             </form>
           </Col>
 
         </Row>
-        <AdditionalInfo> extra information fron blood bank </AdditionalInfo>
-        <Footer></Footer>
       </Container>
     );
   }

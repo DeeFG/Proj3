@@ -25,6 +25,7 @@
     "if-env": "^1.0.4",
     "mysql": "^2.17.1",
     "mysql2": "^1.6.5",
+    "react-calendar": "^2.19.1",
     "sequelize": "^5.16.0"
   }
 }

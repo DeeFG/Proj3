@@ -8,8 +8,8 @@ function NoMatch() {
       <Row>
         <Col size="md-12">
           <Jumbotron>
-            <h1>Sorry, That medical record number does not exist.</h1>  
-            <a href="#" class="btn btn-info"> Search Again  </a>
+            <h1>Sorry, Medical record number does not exist.</h1>  
+            <a href="/" class="btn btn-info"> Search Again  </a>
             <h1>
               <span role="img" aria-label="Face With Rolling Eyes Emoji">
                 

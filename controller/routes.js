@@ -31,6 +31,7 @@ module.exports = function(app) {
       res.json({ patients: results });
     });
   });
+
   //==============================={find One patient by ID }===========================
   app.get("/api/patient/:id", function(req, res) {
     if (req.params.id) {

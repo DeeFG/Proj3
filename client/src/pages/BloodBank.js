@@ -11,14 +11,16 @@ import { Input, TextArea, FormBtn } from "../components/Form";
 
 class BloodBank extends Component {
   state = {
-    books: [],
-    title: "",
-    author: "",
-    synopsis: ""
+    TS: false,
+    ConfType:false,
+    DAT: false,
+    Elution: false,
+    Titer: false,
+    FullXM: false
   };
 
   componentDidMount() {
-    this.loadBooks();
+    // this.loadBooks();
   }
 
   loadBooks = () => {

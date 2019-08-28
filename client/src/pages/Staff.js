@@ -7,79 +7,87 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import ProgressRadial from "../components/progressbar/index";
-import Nav from "../components/Nav/index"
+import Nav from "../components/Nav/index";
 import Footer from "../components/Footer";
 import AdditionalInfo from "../components/AdditionalInfo";
+import Timer from "../components/timer";
 
 class Staff extends Component {
   state = {
-    books: [],
-    title: "",
-    author: "",
-    synopsis: ""
+    FirstName: "",
+    LastName: "",
+    birth: "",
+    Gender: ""
   };
 
   componentDidMount() {
-    this.loadBooks();
+    // console.log(this.props.location.state.patient.patient.FirstName);
+    this.setState({
+      FirstName: this.props.location.state.patient.patient.FirstName,
+      LastName: this.props.location.state.patient.patient.LastName,
+      birth: this.props.location.state.patient.patient.birth,
+      Gender: this.props.location.state.patient.patient.Gender
+      // set the remaining properties
+    });
+
+    // console.log(this.state);
+    // this.loadPatient();
   }
 
-  loadBooks = () => {
-    API.getBooks()
-      .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
-      )
-      .catch(err => console.log(err));
-  };
+  // loadPatient = () => {
+  //   API.getPatient()
+  //     .then(res =>
+  //       this.setState({ FirstName: "", LastName: "", birth: "", Gender: "" })
+  //     )
+  //     .catch(err => console.log(err));
+  // };
 
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
-      .catch(err => console.log(err));
-  };
+  // handleInputChange = event => {
+  //   const { name, value } = event.target;
+  //   this.setState({
+  //     [name]: value
+  //   });
+  // };
 
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
-
-  handleFormSubmit = event => {
-    event.preventDefault();
-    if (this.state.title && this.state.author) {
-      API.saveBook({
-        title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
-      })
-        .then(res => this.loadBooks())
-        .catch(err => console.log(err));
-    }
-  };
+  // handleFormSubmit = event => {
+  //   event.preventDefault();
+  //   if (
+  //     this.state.FirstName &&
+  //     this.state.LastName &&
+  //     this.state.birth &&
+  //     this.state.Gender
+  //   ) {
+  //     API.savePatient({
+  //       FirstName: this.state.FirstName,
+  //       LastName: this.state.LastName,
+  //       birth: this.state.birth,
+  //       Gender: this.state.Gender
+  //     })
+  //       .then(res => this.loadPatient())
+  //       .catch(err => console.log(err));
+  //   }
+  // };
 
   render() {
     return (
-      
       <Container fluid>
-          <Nav> <h3> Nav bar</h3></Nav>
-
-    <Jumbotron>
-              <h1>STAFF</h1>
-           </Jumbotron>
-        <Row>"
-           
-        <Col size="md-4 sm-12">
-        <ProgressRadial progress="20" />
-        </Col>
-
-          <Col size="md-4 sm-12">
-          <ProgressRadial progress="20" />
+        <Nav></Nav>
+        <Jumbotron>
+          <h1>
+            STAFF {this.state.FirstName}  <br></br>
+            {this.state.LastName} <br></br>
+            {this.state.birth} <br></br>
+            {this.state.Gender} <br></br>
+          </h1>
+        </Jumbotron>
+        <Row>
+          <Timer></Timer>
+          <Col size="md-6 sm-12">
+            <ProgressRadial progress="20" />
           </Col>
-
-          <Col size="md-4 sm-12">
-          <ProgressRadial progress="20" />
+          <Col size="md-6 sm-12">
+            <ProgressRadial progress="20" />
           </Col>
-
         </Row>
         <AdditionalInfo> extra information fron blood bank </AdditionalInfo>
         <Footer></Footer>

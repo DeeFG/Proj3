@@ -18,13 +18,15 @@ export function TextArea(props) {
   );
 }
 
-export function Selected(props) {
+export function Select(props) {
   return (
     <div className="form-group">
       <textarea className="form-control" rows="20" {...props} />
     </div>
   );
 }
+
+
 
 export function FormBtn(props) {
   return (
@@ -33,3 +35,7 @@ export function FormBtn(props) {
     </button>
   );
 }
+
+
+
+
