@@ -8,7 +8,7 @@ function Nav() {
       <Link to="/newPatient">Enter Patient</Link> 
       <Link to="/patient#testing"> Testing?  </Link>
       <Link to="/patient#products">Where is my Blood?</Link>
-      <Link to="/">Another patient?</Link>
+      <Link to="/bloodbank">Blood Bank</Link>
     </nav>
   );
 }
