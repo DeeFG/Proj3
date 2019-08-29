@@ -8,20 +8,20 @@ module.exports = function(app) {
   //==========================================={CLIENT SIDE OPTIONS}=============================
   //==========================================={creates a new patient}=============================
   app.post("/api/newPatient", function(req, res) {
-    console.log(req.body);
+    console.log("api server" + req.body);
 
     db.PatientDemographics.create({
       FirstName: req.body.FirstName,
       LastName: req.body.LastName,
       birth: req.body.birth,
       Gender: req.body.Gender
-    }).then(function(result) {
-      res.json(result);
-    });
-    // .catch(function(err) {
-    //   res.sendStatus(500).end(err);
-    // });
-    // return result;
+    })
+      .then(function(result) {
+        res.json(result);
+      })
+      .catch(function(err) {
+        res.status(500).json(err);
+      });
   });
   //===================================={find all patients}=============================
 
@@ -78,7 +78,6 @@ module.exports = function(app) {
         res.json(err);
       });
   });
-
 
   //******************************{update timer}*****************************
 

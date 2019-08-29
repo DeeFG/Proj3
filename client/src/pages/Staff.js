@@ -27,7 +27,7 @@ class Staff extends Component {
       LastName: this.props.location.state.patient.patient.LastName,
       birth: this.props.location.state.patient.patient.birth,
       Gender: this.props.location.state.patient.patient.Gender
-      // set the remaining properties
+      
     });
 
     // console.log(this.state);
@@ -49,24 +49,26 @@ class Staff extends Component {
   //   });
   // };
 
-  // handleFormSubmit = event => {
-  //   event.preventDefault();
-  //   if (
-  //     this.state.FirstName &&
-  //     this.state.LastName &&
-  //     this.state.birth &&
-  //     this.state.Gender
-  //   ) {
-  //     API.savePatient({
-  //       FirstName: this.state.FirstName,
-  //       LastName: this.state.LastName,
-  //       birth: this.state.birth,
-  //       Gender: this.state.Gender
-  //     })
-  //       .then(res => this.loadPatient())
-  //       .catch(err => console.log(err));
-  //   }
-  // };
+  handleFormSubmit = event => {
+    event.preventDefault();
+    if (
+      this.state.TS &&
+      this.state.ConfType &&
+      this.state.DAT &&
+      this.state.ABID
+    ) {
+      API.savePatient({
+        FirstName: this.state.FirstName,
+        LastName: this.state.LastName,
+        birth: this.state.birth,
+        Gender: this.state.Gender
+      })
+        .then(res => this.loadPatient())
+        .catch(err => console.log(err));
+    }
+  };
+
+  
 
   render() {
     return (

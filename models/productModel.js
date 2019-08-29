@@ -22,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
     ProductsOrdered.belongsTo(models.PatientDemographics, {
       foreignKey: {
         allowNull: false
-      }
+      } 
     });
   };
   return ProductsOrdered;

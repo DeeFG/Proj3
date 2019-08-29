@@ -4,6 +4,15 @@ import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, FormBtn } from "../components/Form";
 import Nav from "../components/Nav/index";
+// import RadioButtonsGroup from "../components/Select/index";
+// import Radio from '@material-ui/core/Radio';
+// import RadioGroup from '@material-ui/core/RadioGroup';
+// import FormHelperText from '@material-ui/core/FormHelperText';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import FormControl from '@material-ui/core/FormControl';
+// import FormLabel from '@material-ui/core/FormLabel';
+
+
 
 
 
@@ -16,16 +25,22 @@ class NewPatient extends Component {
   };
 
   componentDidMount() {
-    this.savePatient();
+    this.getPatient();
   }
 
-  savePatient = () => {
-    API.createPatient()
+  getPatient = () => {
+    API.getPatient()
       .then(res =>
-        this.setState({ FirstName: "", LastName: "", birth: "" , Gender:""})
+        this.setState({
+          id: "",
+          FirstName: "",
+          LastName: "",
+          birth: "",
+          Gender: ""
+        })
       )
       .catch(err => console.log(err));
-  };
+  }; 
 
 
 
@@ -36,9 +51,8 @@ class NewPatient extends Component {
     });
   };
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-     if (this.state.FirstName && this.state.LastName && this.state.birth && this.state.Gender) {
+  handleNewPatientSubmit = event => {
+     event.preventDefault();
       API.createPatient({
         FirstName: this.state.FirstName, 
         LastName: this.state.LastName, 
@@ -51,8 +65,7 @@ class NewPatient extends Component {
           birth: this.state.birth , 
           Gender:this.state.Gender
         })))
-        .catch(err => console.log(err));
-    }
+        .catch(err => this.getPatient());
   };
 
   render() {
@@ -95,11 +108,9 @@ class NewPatient extends Component {
              {/* <Chosen>
 
              </Chosen> */}
-
-        
               <FormBtn
                 disabled={!(this.state.FirstName && this.state.LastName && this.state.birth && this.state.Gender)}
-                onClick={this.handleFormSubmit}
+                onClick={this.handleNewPatientSubmit}
               >
                 Save Patient
               </FormBtn>
@@ -111,5 +122,7 @@ class NewPatient extends Component {
     );
   }
 }
+
+
 
 export default NewPatient;

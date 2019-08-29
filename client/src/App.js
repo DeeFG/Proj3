@@ -5,7 +5,6 @@ import NoMatch from "./pages/NoMatch";
 import BloodBank from "./pages/BloodBank";
 import SearchPatient from "./pages/SearchPatient";
 import NewPatient from "./pages/NewPatient"
-import Nav from "./components/Nav";
 
 
 
@@ -14,10 +13,12 @@ function App() {
     <Router>
       <div>
         <Switch>
-          <Route exact path="/" component={SearchPatient} />
-          <Route exact path="/newPatient" component ={NewPatient} />          
+         <Route exact path="/" component={SearchPatient} />
+          <Route exact path="/patient/:id" component={SearchPatient} /> 
+
+          <Route exact path="/newPatient" component ={NewPatient} /> 
+                   
           <Route exact path="/patient" component={Staff} />
-          <Route exact path="/patient/:id" component={SearchPatient} />
           <Route exact path="/updateTesting" component={BloodBank} />
           <Route exact path="/updateAntibodyComment" component={BloodBank} />
           <Route exact path="/updateProducts" component={BloodBank} />

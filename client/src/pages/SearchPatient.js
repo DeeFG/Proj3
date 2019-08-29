@@ -106,7 +106,7 @@ class SearchPatient extends Component {
             <div></div>
             <div></div>
             <div></div>
-            <form>
+            {/* <form>
               <Input
                 value={this.state.FirstName}
                 onChange={this.handleInputChange}
@@ -128,19 +128,12 @@ class SearchPatient extends Component {
               />
 
               <FormBtn
-                disabled={
-                  !(
-                    this.id ||
-                    (this.state.LastName &&
-                      this.state.FirstName &&
-                      this.state.birth)
-                  )
-                }
+                disabled={!this.state.LastName && this.state.FirstName &&  this.state.birth}
                 onClick={this.handleFormSubmit}
               >
                 Find Patient
               </FormBtn>
-            </form>
+            </form> */}
           </Col>
         </Row>
       </Container>
