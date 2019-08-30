@@ -13,13 +13,11 @@ function App() {
     <Router>
       <div>
         <Switch>
-         <Route exact path="/" component={SearchPatient} />
+         <Route exact path="/" component={BloodBank} />
           <Route exact path="/patient/:id" component={SearchPatient} /> 
-
           <Route exact path="/newPatient" component ={NewPatient} /> 
-                   
           <Route exact path="/patient" component={Staff} />
-          <Route exact path="/updateTesting" component={BloodBank} />
+          <Route exact path="/patient/updateTesting" component={BloodBank} />
           <Route exact path="/updateAntibodyComment" component={BloodBank} />
           <Route exact path="/updateProducts" component={BloodBank} />
           <Route component={NoMatch} />

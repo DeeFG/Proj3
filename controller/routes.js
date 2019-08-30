@@ -6,6 +6,10 @@ var db = require("../models");
 
 module.exports = function(app) {
   //==========================================={CLIENT SIDE OPTIONS}=============================
+  //==========================================={get to_order list}=============================
+  app.get("/orderList", async (req, res) => {
+    const testResp = await db.TestingOrdered.find()
+  })
   //==========================================={creates a new patient}=============================
   app.post("/api/newPatient", function(req, res) {
     console.log("api server" + req.body);

@@ -11,14 +11,18 @@ export default {
   getPatient: function(){
     return axios.get("/");
   },
-  createTesting: function(updateTesting){
-    return axios.post("/api/:id/updateTesting", updateTesting);
-  },  
-  createAntibodyComment: function(updateAntibodyComment){
-    return axios.post("/api/:id/updateAntibodyComment", updateAntibodyComment);
+
+  getLists: function(){
+    return axios.get("/orderList")
   },
-  createProducts: function(updateProducts){
-    return axios.post("/api/:id/updateProducts",updateProducts);
+  createTesting: function(id, updateTesting){
+    return axios.post("/api/" + id+ "/updateTesting", updateTesting);
+  },  
+  createAntibodyComment: function(id, updateAntibodyComment){
+    return axios.post("/api/"+id+"/updateAntibodyComment", updateAntibodyComment);
+  },
+  createProducts: function(id, updateProducts){
+    return axios.post("/api/"+id+"/updateProducts",updateProducts);
   },
   
 };

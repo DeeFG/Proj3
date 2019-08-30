@@ -10,7 +10,7 @@ function Nav() {
       <Link to="/patient/Testing"> Check Status </Link>
       {/* <Link to="/patient/Products">Where is my Blood?</Link> */}
        <Link to="/newPatient">Enter Patient</Link> 
-      <Link to="/bloodbank">Blood Bank</Link>
+      <Link to="/">Blood Bank</Link>
     </nav>
   );
 }
