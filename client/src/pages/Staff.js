@@ -17,10 +17,10 @@ import 'moment-timezone';
 
 const testTiming = {
   "TS":40,
-  "2Type": 10,
+  "2ype": 10,
   "DAT": 15,
-  "Elution":190,
-  "Titer": 190,
+  "Elution":180,
+  "Titer": 180,
   "FullXM": 60
 };
 

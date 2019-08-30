@@ -6,14 +6,14 @@ class ProgressRadial extends Component {
     super(props);
         this.state = {
           options: {
-            labels: ['TS', 'ConfType', 'Products', 'OtherTesting'],
+            labels: ['TS', '2Type', 'DAT', 'OtherTesting', 'Products'],
             radialBar: {
               dataLabels: {
                 name: {
                   fontSize: '22px',
                 },
                 value: {
-                  fontSize: '16px',
+                  fontSize: '18px',
                 },
                 total: {
                   show: true,
@@ -26,7 +26,7 @@ class ProgressRadial extends Component {
               }
             }
           },
-          series: [45, 55, 67, 83],
+          series: [40, 10, 15, 240, ,10],
         }
       }
 
