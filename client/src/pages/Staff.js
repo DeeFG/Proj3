@@ -11,6 +11,25 @@ import Nav from "../components/Nav/index";
 import Footer from "../components/Footer";
 import AdditionalInfo from "../components/AdditionalInfo";
 import Timer from "../components/timer";
+import Moment from 'react-moment';
+import 'moment-timezone';
+
+
+const testTiming = {
+  "TS":40,
+  "2Type": 10,
+  "DAT": 15,
+  "Elution":190,
+  "Titer": 190,
+  "FullXM": 60
+};
+
+//  enter data for pt
+
+
+
+
+
 
 class Staff extends Component {
   state = {
@@ -21,7 +40,8 @@ class Staff extends Component {
   };
 
   componentDidMount() {
-    // console.log(this.props.location.state.patient.patient.FirstName);
+    
+    console.log(this.props.location.state.patient.patient);
     this.setState({
       FirstName: this.props.location.state.patient.patient.FirstName,
       LastName: this.props.location.state.patient.patient.LastName,
@@ -30,6 +50,15 @@ class Staff extends Component {
       
     });
 
+  //   export default class MyComponent extends React.Component {
+  //     render() {
+  //         return (
+  //             const dateToFormat = new Date('1976-04-19T12:59-0500');
+  //             <Moment date={dateToFormat} />
+  //         );
+  //     }
+  // }
+  
     // console.log(this.state);
     // this.loadPatient();
   }
@@ -75,21 +104,18 @@ class Staff extends Component {
       <Container fluid>
         <Nav></Nav>
         <Jumbotron>
-          <h1>
-            STAFF {this.state.FirstName}  <br></br>
-            {this.state.LastName} <br></br>
-            {this.state.birth} <br></br>
-            {this.state.Gender} <br></br>
-          </h1>
+           <h3> {this.state.FirstName} <br></br>
+           {this.state.LastName} <br></br>
+           {this.state.birth} <br></br>
+           {this.state.Gender}</h3>  
+          
         </Jumbotron>
         <Row>
           <Timer></Timer>
           <Col size="md-6 sm-12">
             <ProgressRadial progress="20" />
           </Col>
-          <Col size="md-6 sm-12">
-            <ProgressRadial progress="20" />
-          </Col>
+  
         </Row>
         <AdditionalInfo> extra information fron blood bank </AdditionalInfo>
         <Footer></Footer>
@@ -97,5 +123,19 @@ class Staff extends Component {
     );
   }
 }
+
+
+
+
+//updated tiome every 30 sec
+// export default class MyComponent extends React.Component {
+//   render() {
+//       return (
+//           <Moment interval={30000}>
+//               1976-04-19T12:59-0500
+//           </Moment>
+//       );
+//   }
+// }
 
 export default Staff;

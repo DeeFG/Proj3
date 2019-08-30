@@ -4,100 +4,43 @@ import ReactApexChart from "react-apexcharts";
 class ProgressRadial extends Component {
   constructor(props) {
     super(props);
-    
-
-    this.state = {
-      options: {
-        chart: {
-          toolbar: {
-            show: false
-          }
-        },
-        plotOptions: {
-          radialBar: {
-            startAngle: -135,
-            endAngle: 225,
-            hollow: {
-              margin: 0,
-              size: "70%",
-              background: "#fff",
-              position: "front",
-              dropShadow: {
-                enabled: true,
-                top: 3,
-                left: 0,
-                blur: 4,
-                opacity: 0.5
-              }
-            },
-            track: {
-              background: "#fff",
-              strokeWidth: "67%",
-              margin: 0, // margin is in pixels
-              dropShadow: {
-                enabled: true,
-                top: -3,
-                left: 0,
-                blur: 4,
-                opacity: 0.35
-              }
-            },
-
-            dataLabels: {
-              name: {
-                offsetY: -10,
-                show: true,
-                color: "#888",
-                fontSize: "17px"
-              },
-              value: {
-                formatter: function(val) {
-                  return parseInt(val);
+        this.state = {
+          options: {
+            labels: ['TS', 'ConfType', 'Products', 'OtherTesting'],
+            radialBar: {
+              dataLabels: {
+                name: {
+                  fontSize: '22px',
                 },
-                color: "#111",
-                fontSize: "26px",
-                show: true
+                value: {
+                  fontSize: '16px',
+                },
+                total: {
+                  show: true,
+                  label: 'Fast Blood',
+                  formatter: function (w) {
+                    // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+                    return 249
+                  }
+                }
               }
             }
-          }
-        },
-        fill: {
-          type: "gradient",
-          gradient: {
-            shade: "dark",
-            type: "horizontal",
-            shadeIntensity: 0.5,
-            gradientToColors: ["#ABE5A1"],
-            inverseColors: true,
-            opacityFrom: 1,
-            opacityTo: 1,
-            stops: [0, 100]
-          }
-        },
-        stroke: {
-          lineCap: "round"
-        },
-        labels: ["timer"]
-      },
-      series: [15]
-    };
-  }
+          },
+          series: [45, 55, 67, 83],
+        }
+      }
 
-  componentDidMount() {
-    this.setState({ series: [this.props.progress] });
-    // this.setState({ series: [this.props.progress, 50, 80, 10] });
-    // multiple radi within each other
-  }
+      render() {
+        return (
+          
 
-  render() {
-    return (
-      <ReactApexChart
-        options={this.state.options}
-        series={this.state.series}
-        type="radialBar"
-        width="500"
-      />
-    );
-  }
-}
+          <div id="chart">
+            <ReactApexChart options={this.state.options} series={this.state.series} type="radialBar" height="350" />
+          </div>
+  
+
+        );
+      }
+    }
+
 export default ProgressRadial;

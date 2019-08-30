@@ -7,14 +7,14 @@ CREATE PATIENT_DB;
 "birth":"19471201",
 "Gender":"F"
  },
- { "FirstName":"TEST",
-"LastName": "YYY",
-"birth":"1941111",
+ { "FirstName":"James",
+"LastName": "Bond",
+"birth":"1941-11-01",
 "Gender":"M"
  },
- { "FirstName":"TEST",
-"LastName": "ZZZ",
-"birth":"19860807",
+ { "FirstName":"Kimmmy",
+"LastName": "Kay",
+"birth":"1986-08-07",
 "Gender":"M"
 
 
