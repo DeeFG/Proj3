@@ -13,6 +13,7 @@ class SearchPatient extends Component {
     LastName: "",
     birth: "",
     Gender: "",
+
     redirect: false
   };
 
@@ -33,6 +34,8 @@ class SearchPatient extends Component {
       )
       .catch(err => console.log(err));
   };
+
+
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -104,34 +107,7 @@ class SearchPatient extends Component {
             <div></div>
             <div></div>
             <div></div>
-            {/* <form>
-              <Input
-                value={this.state.FirstName}
-                onChange={this.handleInputChange}
-                name="FirstName"
-                placeholder="First Name"
-              />
-              <Input
-                value={this.state.LastName}
-                onChange={this.handleInputChange}
-                name="LastName"
-                placeholder="Last Name "
-              />
-              <Input
-                type="date"
-                value={this.state.birth}
-                onChange={this.handleInputChange}
-                name="birth"
-                placeholder="Birth Date "
-              />
-
-              <FormBtn
-                disabled={!this.state.LastName && this.state.FirstName &&  this.state.birth}
-                onClick={this.handleFormSubmit}
-              >
-                Find Patient
-              </FormBtn>
-            </form> */}
+            
           </Col>
         </Row>
       </Container>

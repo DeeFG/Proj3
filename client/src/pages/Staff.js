@@ -7,111 +7,130 @@ import Nav from "../components/Nav/index";
 import Footer from "../components/Footer";
 import AdditionalInfo from "../components/AdditionalInfo";
 import Timer from "../components/timer";
-import Moment from 'react-moment';
-import 'moment-timezone';
+import Moment from "react-moment";
+import "moment-timezone";
 
-
-const testTiming = {
-  "TS":40,
-  "2ype": 10,
-  "DAT": 15,
-  "Elution":180,
-  "Titer": 180,
-  "FullXM": 60
-};
+// const testTiming = {
+//   TS: 40,
+//   "2ype": 10,
+//   DAT: 15,
+//   Elution: 180,
+//   Titer: 180,
+//   FullXM: 60
+// };
 
 //  enter data for pt
 
-
-
-
-
-
 class Staff extends Component {
   state = {
-    FirstName: "",
-    LastName: "",
-    birth: "",
-    Gender: ""
+    patient: {},
+    timer: [0, 0, 0, 0, 0]
   };
 
-  componentDidMount() {
-    
-    console.log(this.props.location.state.patient.patient);
-    this.setState({
-      FirstName: this.props.location.state.patient.patient.FirstName,
-      LastName: this.props.location.state.patient.patient.LastName,
-      birth: this.props.location.state.patient.patient.birth,
-      Gender: this.props.location.state.patient.patient.Gender
-      
-    });
+  UNSAFE_componentWillMount() {
+    var intervalId = setInterval(() => {
+      var dupArr = this.state.timer;
+      dupArr[0] += 10;
+      this.setState({
+        timer: dupArr
+      });
 
-  //   export default class MyComponent extends React.Component {
-  //     render() {
-  //         return (
-  //             const dateToFormat = new Date('1976-04-19T12:59-0500');
-  //             <Moment date={dateToFormat} />
-  //         );
-  //     }
-  // }
-  
-    // console.log(this.state);
-    // this.loadPatient();
+      if (dupArr[0] === 100) {
+        clearInterval(intervalId);
+      }
+    }, 1 * 1000);
+  }
+  UNSAFE_componentWillMount() {
+    var intervalId2 = setInterval(() => {
+      var dupArr = this.state.timer;
+      dupArr[1] += 10;
+      this.setState({
+        timer: dupArr
+      });
+      if (dupArr[1] === 100) {
+        clearInterval(intervalId2);
+      }
+    }, 1 * 1000);
   }
 
-  // loadPatient = () => {
-  //   API.getPatient()
-  //     .then(res =>
-  //       this.setState({ FirstName: "", LastName: "", birth: "", Gender: "" })
-  //     )
-  //     .catch(err => console.log(err));
-  // };
+  UNSAFE_componentWillMount() {
+    var intervalId2 = setInterval(() => {
+      var dupArr = this.state.timer;
+      dupArr[2] += 10;
+      this.setState({
+        timer: dupArr
+      });
+      if (dupArr[2] === 100) {
+        clearInterval(intervalId2);
+      }
+    }, 1 * 1000);
+  }
 
-  // handleInputChange = event => {
-  //   const { name, value } = event.target;
-  //   this.setState({
-  //     [name]: value
-  //   });
-  // };
+  UNSAFE_componentWillMount() {
+    var intervalId4 = setInterval(() => {
+      var dupArr = this.state.timer;
+      dupArr[3] += 10;
+      this.setState({
+        timer: dupArr
+      });
+      if (dupArr[3] === 100) {
+        clearInterval(intervalId4);
+      }
+    }, 1 * 1000);
+  }
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-    if (
-      this.state.TS &&
-      this.state.ConfType &&
-      this.state.DAT &&
-      this.state.ABID
-    ) {
-      API.savePatient({
-        FirstName: this.state.FirstName,
-        LastName: this.state.LastName,
-        birth: this.state.birth,
-        Gender: this.state.Gender
-      })
-        .then(res => this.loadPatient())
-        .catch(err => console.log(err));
-    }
-  };
+  UNSAFE_componentWillMount() {
+    var intervalId5 = setInterval(() => {
+      var dupArr = this.state.timer;
+      dupArr[4] += 10;
+      this.setState({
+        timer: dupArr
+      });
+      if (dupArr[4] === 100) {
+        clearInterval(intervalId5);
+      }
+    }, 1 * 1000);
+  }
 
-  
+  UNSAFE_componentWillMount() {
+    var intervalId6 = setInterval(() => {
+      var dupArr = this.state.timer;
+      dupArr[5] += 10;
+      this.setState({
+        timer: dupArr
+      });
+      if (dupArr[5] === 100) {
+        clearInterval(intervalId6);
+      }
+    }, 1 * 1000);
+  }
+
+  UNSAFE_componentDidMount() {
+    console.log(this.props.location.state.patient);
+    this.setState({
+      patient: { ...this.props.location.state.patient, TS: "" }
+    });
+  }
 
   render() {
+    const { patient } = this.state;
     return (
       <Container fluid>
         <Nav></Nav>
         <Jumbotron>
-           <h3> {this.state.FirstName} <br></br>
-           {this.state.LastName} <br></br>
-           {this.state.birth} <br></br>
-           {this.state.Gender}</h3>  
-          
+          <h3>
+            {" "}
+            {patient.FirstName} <br></br>
+            {patient.LastName} <br></br>
+            {patient.birth} <br></br>
+            {patient.Gender}
+          </h3>
         </Jumbotron>
         <Row>
           <Timer></Timer>
           <Col size="md-6 sm-12">
-            <ProgressRadial progress="20" />
+            <ProgressRadial progress={0} />
           </Col>
-  
         </Row>
         <AdditionalInfo> extra information fron blood bank </AdditionalInfo>
         <Footer></Footer>
@@ -119,19 +138,5 @@ class Staff extends Component {
     );
   }
 }
-
-
-
-
-//updated tiome every 30 sec
-// export default class MyComponent extends React.Component {
-//   render() {
-//       return (
-//           <Moment interval={30000}>
-//               1976-04-19T12:59-0500
-//           </Moment>
-//       );
-//   }
-// }
 
 export default Staff;

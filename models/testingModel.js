@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes){
-    var TestingOrdered= sequelize.define("TestingOrdered",{
+    const TestingOrdered= sequelize.define("TestingOrdered",{
         TS: { 
           type: DataTypes.BOOLEAN, 
           defaultValue: 0 ,

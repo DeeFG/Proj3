@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import Nav from "../components/Nav";
 import Checkbox from "../components/Checkbox";
+import SearchPatient from "./SearchPatient";
+import { Input, FormBtn } from "../components/Form";
+import Jumbotron from "../components/Jumbotron";
+
+
 
 const Testing = [
   "Type and Screen",
@@ -34,7 +39,7 @@ const Antibody = [
 
 class Orders extends Component {
   state = {
-    id: 1,
+    id: "",
     testsToOrder: [],
     productsToOrder: [],
     antibodiesToOrder: []
@@ -56,6 +61,40 @@ class Orders extends Component {
     }
   };
 
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleSearchById = event => {
+    event.preventDefault();
+    API.getPatientById(this.state.id)
+      .then(response => {
+        console.log(response.data);
+        this.setState({ redirect: true, patientData: response.data });
+      })
+      .catch(err => console.log(err));
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    if (this.state.LastName && this.state.FirstName && this.state.birth) {
+      API.getPatient({
+        id: this.state.id,
+        FirstName: this.state.FirstName,
+        LastName: this.state.LastName,
+        birth: this.state.birth,
+        Gender: this.state.Gender
+      })
+        .then(res => this.loadPatient())
+        .catch(err => console.log(err));
+    }
+  };
+
+
   handleFormSubmit = async formSubmitEvent => {
     formSubmitEvent.preventDefault();
 
@@ -66,6 +105,11 @@ class Orders extends Component {
     console.log(testResponse)
    
   };
+
+
+
+
+  
 
   createCheckbox = (option, section) => (
     <Checkbox
@@ -85,6 +129,22 @@ class Orders extends Component {
     return (
       <div className="container">
         <Nav></Nav>
+        <Jumbotron>Add test</Jumbotron>
+        <form>
+              <Input
+                value={this.state.id}
+                onChange={this.handleInputChange}
+                name="id"
+                placeholder="Medical record Number (required)"
+              />
+            </form>{" "}
+            {"\n"}
+            <FormBtn disabled={!this.state.id} onClick={this.handleSearchById}>
+              {" "}
+              Find patientby HRN
+            </FormBtn>
+
+      
         <div className="row mt-5">
           <div className="col-sm-12">
             <form onSubmit={this.handleFormSubmit}>
@@ -93,7 +153,7 @@ class Orders extends Component {
 
               ============== Products to Order==================
               {this.createCheckboxesProducts()}
-              ============== Products to Order==================
+              ============== Antibody Identified==================
               {this.createCheckboxesAntibody()}
               ================================
               <div className="form-group mt-2">

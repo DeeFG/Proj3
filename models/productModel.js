@@ -1,19 +1,19 @@
 module.exports = function(sequelize, DataTypes) {
   var ProductsOrdered = sequelize.define("ProductsOrdered", {
     RedCell: { 
-      type: DataTypes.INTEGER, 
+      type: DataTypes.BOOLEAN, 
       defaultValue: 0 
     },
     Plasma: { 
-      type: DataTypes.INTEGER, 
+      type: DataTypes.BOOLEAN, 
       defaultValue: 0 
     },
     Plt:{ 
-      type: DataTypes.INTEGER, 
+      type: DataTypes.BOOLEAN, 
       defaultValue: 0 
     },
     Cryo:{ 
-      type: DataTypes.INTEGER, 
+      type: DataTypes.BOOLEAN, 
       defaultValue: 0 
     }
   });

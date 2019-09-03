@@ -37,6 +37,5 @@ CREATE PATIENT_DB;
     "Plasma":1,
     "Plt":1,
     "Cryo": 1,
-
  }
 

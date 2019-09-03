@@ -3,8 +3,8 @@ import React from "react";
 function Footer() {
   return (
     
-<div class="card text-center">
-  <div class="card-header">
+<div className="card text-center">
+  <div className="card-header">
     Need Additional Information 
   </div>
   <div className="card-body">
@@ -15,7 +15,7 @@ function Footer() {
     <a href="https://www.redcrossblood.org/biomedical-services/blood-diagnostic-testing/antigen-negative-rbc-services.html" 
     className="btn btn-primary">Additional Antibody information </a>
   </div>
-  <div class="card-footer text-muted">
+  <div className="card-footer text-muted">
     FAST BLOOD
   </div>
 </div>
