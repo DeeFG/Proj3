@@ -24,112 +24,48 @@ import "moment-timezone";
 class Staff extends Component {
   state = {
     patient: {},
-    timer: [0, 0, 0, 0, 0]
+    timer: [0, 0, 0, 0, 0],
+    testData: null,
+    productData:null
   };
 
-  UNSAFE_componentWillMount() {
-    var intervalId = setInterval(() => {
-      var dupArr = this.state.timer;
-      dupArr[0] += 10;
+  componentDidMount() {
+    const id = this.props.location.state.patient.patient.id;
+    API.getTesting(id).then(response => {
       this.setState({
-        timer: dupArr
+        testData: response.data.patient
       });
+    });
 
-      if (dupArr[0] === 100) {
-        clearInterval(intervalId);
-      }
-    }, 1 * 1000);
-  }
-  UNSAFE_componentWillMount() {
-    var intervalId2 = setInterval(() => {
-      var dupArr = this.state.timer;
-      dupArr[1] += 10;
-      this.setState({
-        timer: dupArr
-      });
-      if (dupArr[1] === 100) {
-        clearInterval(intervalId2);
-      }
-    }, 1 * 1000);
-  }
-
-  UNSAFE_componentWillMount() {
-    var intervalId2 = setInterval(() => {
-      var dupArr = this.state.timer;
-      dupArr[2] += 10;
-      this.setState({
-        timer: dupArr
-      });
-      if (dupArr[2] === 100) {
-        clearInterval(intervalId2);
-      }
-    }, 1 * 1000);
-  }
-
-  UNSAFE_componentWillMount() {
-    var intervalId4 = setInterval(() => {
-      var dupArr = this.state.timer;
-      dupArr[3] += 10;
-      this.setState({
-        timer: dupArr
-      });
-      if (dupArr[3] === 100) {
-        clearInterval(intervalId4);
-      }
-    }, 1 * 1000);
-  }
-
-  UNSAFE_componentWillMount() {
-    var intervalId5 = setInterval(() => {
-      var dupArr = this.state.timer;
-      dupArr[4] += 10;
-      this.setState({
-        timer: dupArr
-      });
-      if (dupArr[4] === 100) {
-        clearInterval(intervalId5);
-      }
-    }, 1 * 1000);
-  }
-
-  UNSAFE_componentWillMount() {
-    var intervalId6 = setInterval(() => {
-      var dupArr = this.state.timer;
-      dupArr[5] += 10;
-      this.setState({
-        timer: dupArr
-      });
-      if (dupArr[5] === 100) {
-        clearInterval(intervalId6);
-      }
-    }, 1 * 1000);
-  }
-
-  UNSAFE_componentDidMount() {
-    console.log(this.props.location.state.patient);
+    const patient = this.props.location.state.patient.patient;
     this.setState({
-      patient: { ...this.props.location.state.patient, TS: "" }
+      patient: patient
     });
   }
+  
 
   render() {
-    const { patient } = this.state;
     return (
       <Container fluid>
         <Nav></Nav>
         <Jumbotron>
           <h3>
             {" "}
-            {patient.FirstName} <br></br>
-            {patient.LastName} <br></br>
-            {patient.birth} <br></br>
-            {patient.Gender}
+            {this.state.patient.LastName}, {this.state.patient.FirstName}
+            <br></br>
+            <Moment format="MM/DD/YYYY">{this.state.patient.birth}</Moment>
+            <br></br>
+            {this.state.patient.Gender}
           </h3>
         </Jumbotron>
         <Row>
           <Timer></Timer>
           <Col size="md-6 sm-12">
-            <ProgressRadial progress={0} />
+            {this.state.testData !== null ? (
+              <ProgressRadial testData={this.state.testData} />
+            ) : (
+              <h1>Loading...</h1>
+            )}
           </Col>
         </Row>
         <AdditionalInfo> extra information fron blood bank </AdditionalInfo>
@@ -140,3 +76,81 @@ class Staff extends Component {
 }
 
 export default Staff;
+
+// UNSAFE_componentWillMount() {
+//   var intervalId = setInterval(() => {
+//     var dupArr = this.state.timer;
+//     dupArr[0] += 10;
+//     this.setState({
+//       timer: dupArr
+//     });
+
+//     if (dupArr[0] === 100) {
+//       clearInterval(intervalId);
+//     }
+//   }, 1 * 1000);
+// }
+// UNSAFE_componentWillMount() {
+//   var intervalId2 = setInterval(() => {
+//     var dupArr = this.state.timer;
+//     dupArr[1] += 10;
+//     this.setState({
+//       timer: dupArr
+//     });
+//     if (dupArr[1] === 100) {
+//       clearInterval(intervalId2);
+//     }
+//   }, 1 * 1000);
+// }
+
+// UNSAFE_componentWillMount() {
+//   var intervalId2 = setInterval(() => {
+//     var dupArr = this.state.timer;
+//     dupArr[2] += 10;
+//     this.setState({
+//       timer: dupArr
+//     });
+//     if (dupArr[2] === 100) {
+//       clearInterval(intervalId2);
+//     }
+//   }, 1 * 1000);
+// }
+
+// UNSAFE_componentWillMount() {
+//   var intervalId4 = setInterval(() => {
+//     var dupArr = this.state.timer;
+//     dupArr[3] += 10;
+//     this.setState({
+//       timer: dupArr
+//     });
+//     if (dupArr[3] === 100) {
+//       clearInterval(intervalId4);
+//     }
+//   }, 1 * 1000);
+// }
+
+// UNSAFE_componentWillMount() {
+//   var intervalId5 = setInterval(() => {
+//     var dupArr = this.state.timer;
+//     dupArr[4] += 10;
+//     this.setState({
+//       timer: dupArr
+//     });
+//     if (dupArr[4] === 100) {
+//       clearInterval(intervalId5);
+//     }
+//   }, 1 * 1000);
+// }
+
+// UNSAFE_componentWillMount() {
+//   var intervalId6 = setInterval(() => {
+//     var dupArr = this.state.timer;
+//     dupArr[5] += 10;
+//     this.setState({
+//       timer: dupArr
+//     });
+//     if (dupArr[5] === 100) {
+//       clearInterval(intervalId6);
+//     }
+//   }, 1 * 1000);
+// }

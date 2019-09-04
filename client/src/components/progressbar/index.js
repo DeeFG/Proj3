@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactApexChart from "react-apexcharts";
+import API from "../../utils/API";
 
 class ProgressRadial extends Component {
   timerId = null;
@@ -29,7 +30,7 @@ class ProgressRadial extends Component {
         }
       },
       TSProgress: 0,
-      TwoTypeProgress: 0,
+      ConfTypeProgress: 0,
       DATProgress: 0,
       OtherTestingProgress: 0,
       ProductsProgress: 0
@@ -37,35 +38,51 @@ class ProgressRadial extends Component {
   }
 
   UNSAFE_componentWillMount() {
-    var intervalId = setInterval(() => {
-      this.setState({
-        TSProgress: this.state.TSProgress + 1
-      });
+    console.log(this.props);
+//get data fron typenscreen to see it its tru or false, will display progress bar if present 
+    if (this.props.testData.TS) {
+      var intervalId = setInterval(() => {
+        this.setState({
+          TSProgress: this.state.TSProgress + 1
+        });
 
-      if (this.state.TSProgress >= 100) {
-        clearInterval(intervalId);
-      }
-    }, 2.5 * 1000);
+        if (this.state.TSProgress >= 100) {
+          clearInterval(intervalId);
+        }
+      }, 2.5 * 1000);
+    }
 
-    var intervalId2 = setInterval(() => {
-      this.setState({
-        TwoTypeProgress: this.state.TwoTypeProgress + 1
-      });
-      if (this.state.TwoTypeProgress >= 100) {
-        clearInterval(intervalId2);
-      }
-    }, 8.3 * 1000);
 
-    var intervalId3 = setInterval(() => {
-      this.setState({
-        DATProgress: this.state.DATProgress + 1
-      });
-      if (this.state.DATProgress >= 100) {
-        clearInterval(intervalId3);
-      }
-    }, 1 * 1000);
+//get data fron confirm type to see it its tru or false, will display progress bar if present 
+if (this.props.testData.ConfTypeProgress){
+ var intervalId2 = setInterval(() => {
+   this.setState({
+     ConfTypeProgress: this.state.ConfTypeProgress + 1
+   });
+   if (this.state.ConfTypeProgress >= 100) {
+     clearInterval(intervalId2);
+   }
+ }, 8.3 * 1000);
+ }
+   
 
-    var intervalId4 = setInterval(() => {
+ 
+//get data fron DAT to see it its tru or false, will display progress bar if present 
+    if (this.props.testData.DAT) {
+      var intervalId3 = setInterval(() => {
+        this.setState({
+          DATProgress: this.state.DATProgress + 1
+        });
+        if (this.state.DATProgress >= 100) {
+          clearInterval(intervalId3);
+        }
+      }, 1 * 1000);
+    }
+
+    //get data fron other test including( ELUTION, ABID, TITER, FUllxm) to see it its tru or false, will display progress bar if present 
+if (this.props.testData.ABID ||this.props.testData.Elution|| this.props.testData.Titer){
+
+  var intervalId4 = setInterval(() => {
       this.setState({
         OtherTestingProgress: this.state.OtherTestingProgress + 1
       });
@@ -73,6 +90,9 @@ class ProgressRadial extends Component {
         clearInterval(intervalId4);
       }
     }, 1 * 1000);
+
+}
+  
 
     var intervalId5 = setInterval(() => {
       this.setState({
@@ -96,7 +116,7 @@ class ProgressRadial extends Component {
   render() {
     const {
       TSProgress,
-      TwoTypeProgress,
+      ConfTypeProgress,
       DATProgress,
       OtherTestingProgress,
       ProductsProgress
@@ -107,7 +127,7 @@ class ProgressRadial extends Component {
           options={this.state.options}
           series={[
             TSProgress,
-            TwoTypeProgress,
+            ConfTypeProgress,
             DATProgress,
             OtherTestingProgress,
             ProductsProgress

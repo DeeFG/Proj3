@@ -1,29 +1,36 @@
 import axios from "axios";
 
 export default {
-
-  createPatient: function(newPatient){
+  createPatient: function(newPatient) {
     return axios.post("/api/newPatient", newPatient);
   },
-  getPatientById: function(id){ 
-    return axios.get("/api/patient/" +id)
+  // GET ROUTES for patients and root
+  getPatientById: function(id) {
+    return axios.get("/api/patient/" + id);
   },
-  getPatient: function(){
+  getPatient: function() {
     return axios.get("/");
   },
 
-  getLists: function(){
-    return axios.get("/orderList")
+  // GET ROUTES testing  and products for radial bars
+  getTesting: function(id) {
+    return axios.get("api/getTesting/" + id);
   },
-  createTesting: function(id, updateTesting){
-    return axios.post("/api/" + id+ "/updateTesting", updateTesting);
-  },  
-  createAntibodyComment: function(id, updateAntibodyComment){
-    return axios.post("/api/"+id+"/updateAntibodyComment", updateAntibodyComment);
+  getProducts: function(id) {
+    return axios.get("api/getProducts/" + id);
   },
-  createProducts: function(id, updateProducts){
-    return axios.post("/api/"+id+"/updateProducts",updateProducts);
+  //POST ROUTES for testing, commentsm and products
+
+  createTesting: function(id, updateTesting) {
+    return axios.post("/api/" + id + "/updateTesting", updateTesting);
   },
-  
+  createAntibodyComment: function(id, updateAntibodyComment) {
+    return axios.post(
+      "/api/" + id + "/updateAntibodyComment",
+      updateAntibodyComment
+    );
+  },
+  createProducts: function(id, updateProducts) {
+    return axios.post("/api/" + id + "/updateProducts", updateProducts);
+  }
 };
-  

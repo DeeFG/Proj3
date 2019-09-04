@@ -53,6 +53,39 @@ module.exports = function(app) {
     console.log(req.params.id);
   });
 
+
+  app.get("/api/getTesting/:id", function(req, res) {
+    if (req.params.id) {
+      db.TestingOrdered.findOne({
+        where: {
+          PatientDemographicId: req.params.id
+        },
+      }).then(function(results) {
+        console.log(results);
+        res.json({ patient: results });
+      });
+    } else {
+      alert("patient not found");
+    }
+    console.log(req.params.id);
+  });
+
+  app.get("/api/getProducts/:id", function(req, res) {
+    if (req.params.id) {
+      db.ProductsOrdered.findOne({
+        where: {
+          PatientDemographicId: req.params.id
+        },
+      }).then(function(results) {
+        console.log(results);
+        res.json({ patient: results });
+      });
+    } else {
+      alert("patient not found");
+    }
+    console.log(req.params.id);
+  });
+
   //******************************{BLOOD BANK SIDE OPTIONS}*****************************
   //******************************{update the testing}*****************************
 
@@ -91,7 +124,7 @@ module.exports = function(app) {
     db.Antibody.create(
       {
         PatientDemographicId: req.params.id,
-        Antibody: req.body.antibody,
+        Antibody: req.body.Antibody,
         Comment: req.body.Comment
       },
       {

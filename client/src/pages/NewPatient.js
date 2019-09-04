@@ -4,6 +4,7 @@ import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, FormBtn } from "../components/Form";
 import Nav from "../components/Nav/index";
+import Moment from "react-moment";
 
 
 
@@ -66,8 +67,17 @@ class NewPatient extends Component {
           <Nav> <h3> Nav bar</h3></Nav>
     <Jumbotron>
               <h1>ADD PATIENT</h1>
+              <h3>
+            {/* {" "}
+            {this.state.patient.LastName}, {this.state.patient.FirstName}
+            <br></br>
+            <Moment format="MM/DD/YYYY">{this.state.patient.birth}</Moment>
+            <br></br>
+            {this.state.patient.Gender} */}
+          </h3>
+              
            </Jumbotron>
-        <Row>"
+        <Row>
            
         <Col size="md-4">
         <form>
