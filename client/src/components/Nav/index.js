@@ -5,6 +5,7 @@ import "./style.css";
 function Nav() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-info text-danger">
+
    <h3>
      <Link to="/patient/:id">Check status</Link> <span></span><span></span>
       <Link to="/newPatient">Enter Patient</Link> <span></span><span></span>

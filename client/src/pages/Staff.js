@@ -51,6 +51,7 @@ class Staff extends Component {
         <Jumbotron  style={{ height: 100, clear: "both", paddingTop: 50, textAlign: "center" }}>
 
  <h2>
+ 
         <Row>
         <Col size="md-1">
           </Col>
@@ -72,11 +73,12 @@ class Staff extends Component {
         </Jumbotron>
 
         <Row>
+          
           <Col size="md-12 sm-12">
+            
           <Timer></Timer>
         </Col>
         </Row>
-
 
         <Row>
           <Col size="md-12 sm-12">
@@ -87,7 +89,6 @@ class Staff extends Component {
             )}
           </Col>
         </Row>
-        <AdditionalInfo> extra information fron blood bank </AdditionalInfo>
         <Footer></Footer>
       </Container>
     );
