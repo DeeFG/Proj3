@@ -4,11 +4,9 @@ function AdditionalInfo() {
   return (
 
 
-  <div className="card-body card border-info mb-3">
+  <div className="card-header mb-3">
     <center>
-       <h6 className="card-title">Blood Bank</h6>
-    <p className="card-text">If Fast Blood has not anwered your question Please call us</p>
-    <a className="btn btn-primary"> Contact Blood Bank </a> 
+     Hover to see what Test and Products are being processed
     </center>
      
   </div>
