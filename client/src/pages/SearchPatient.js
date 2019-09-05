@@ -19,7 +19,7 @@ class SearchPatient extends Component {
 
   componentDidMount() {
     this.loadPatient();
-  }
+  } 
 
   loadPatient = () => {
     API.getPatient()
@@ -88,7 +88,7 @@ class SearchPatient extends Component {
             <Jumbotron>
               <h1>
                 Welcome to Fast Blood please enter your patient's Medical Record
-                Number or Demographics{" "}
+                Number 
               </h1>
             </Jumbotron>
             <form>

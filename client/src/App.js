@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Staff from "./pages/Staff";
-import NoMatch from "./pages/NoMatch";
+import NoMatch from "./pages/NoMatch"; 
 import BloodBank from "./pages/BloodBank";
 import SearchPatient from "./pages/SearchPatient";
 import NewPatient from "./pages/NewPatient"

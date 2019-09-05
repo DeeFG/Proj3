@@ -6,7 +6,7 @@ class Timer extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        count: 12000,
+        count: 60,
         running: false,
       }
     }
@@ -18,6 +18,7 @@ class Timer extends React.Component {
           count: newCount >= 0 ? newCount : 0,
           running: true,
         });
+    
       }, 1000);
     }
     componentWillUnmount() {
@@ -37,7 +38,8 @@ class Timer extends React.Component {
       return (
         <div className="container">
           <div className="displayedTime">
-            <h1>{this.format(count)}</h1>
+            <center>
+            <h1>{this.format(count)}</h1></center>
           </div>
         </div>
       )

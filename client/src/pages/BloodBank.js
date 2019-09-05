@@ -5,6 +5,9 @@ import Checkbox from "../components/Checkbox";
 import SearchPatient from "./SearchPatient";
 import { Input, FormBtn } from "../components/Form";
 import Jumbotron from "../components/Jumbotron";
+import { Redirect } from "react-router-dom";
+import Moment from "react-moment";
+import "moment-timezone";
 
 
 
@@ -42,12 +45,36 @@ class Orders extends Component {
     id: "",
     testsToOrder: [],
     productsToOrder: [],
-    antibodiesToOrder: []
+    antibodiesToOrder: [],
+    FirstName: "", 
+    LastName: "", 
+    birth: "" , 
+    Gender:"",
+    redirect: false
   };
 
   // selectAll = () => this.selectAllCheckboxes(true);
 
   // deselectAll = () => this.selectAllCheckboxes(false);
+
+
+  componentDidMount() {
+    this.getPatient();
+  }
+
+  getPatient = () => {
+    API.getPatient()
+      .then(res =>
+        this.setState({
+          id: "",
+          FirstName: "",
+          LastName: "",
+          birth: "",
+          Gender: ""
+        })
+      )
+      .catch(err => console.log(err));
+  }; 
 
   handleCheckboxChange = changeEvent => {
     const { name, value } = changeEvent.target;
@@ -97,12 +124,12 @@ class Orders extends Component {
 
   handleFormSubmit = async formSubmitEvent => {
     formSubmitEvent.preventDefault();
-
+   
     console.log("Here");
     const testResponse = await API.createTesting(this.state.id, this.state.testsToOrder)
     const prodResponse = await API.createProducts(this.state.id, this.state.productsToOrder)
     const antiResponse = await API.createAntibodyComment(this.state.id, this.state.antibodiesToOrder)
-    console.log(testResponse)
+    console.log(testResponse, prodResponse , antiResponse)
    
   };
 
@@ -126,14 +153,20 @@ class Orders extends Component {
   createCheckboxesAntibody = () => Antibody.map(anti => this.createCheckbox(anti, "antibodiesToOrder"));
 
   render() {
+    
     return (
       <div className="container">
         <Nav></Nav>
-        <Jumbotron>Add test</Jumbotron>
+        <Jumbotron>  
+          <h1>Add Testing and Products
+          </h1>
+
+        </Jumbotron>
         <form>
               <Input
                 value={this.state.id}
                 onChange={this.handleInputChange}
+                checked={!this.state.checked }
                 name="id"
                 placeholder="Medical record Number (required)"
               />
@@ -193,3 +226,6 @@ export default Orders;
 //   }, 4000);
 
 // };
+
+
+

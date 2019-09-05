@@ -4,14 +4,17 @@ import "./style.css";
 
 function Nav() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-info">
-    <h5>NAV BAR</h5>
-     <Link to="/patient/:id">Find Patient</Link> 
-      <Link to="/patient/Testing"> Check Status </Link>
-      {/* <Link to="/patient/Products">Where is my Blood?</Link> */}
-       <Link to="/newPatient">Enter Patient</Link> 
-      <Link to="/">Blood Bank</Link>
+    <nav className="navbar navbar-expand-lg navbar-light bg-info text-danger">
+   <h3>
+     <Link to="/patient/:id">Check status</Link> <span></span><span></span>
+      <Link to="/newPatient">Enter Patient</Link> <span></span><span></span>
+      <Link to="/">Blood Bank</Link> <span></span><span></span>
+   </h3>
+
+     
     </nav>
+   
+
   );
 }
 

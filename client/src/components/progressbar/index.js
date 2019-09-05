@@ -40,7 +40,7 @@ class ProgressRadial extends Component {
   UNSAFE_componentWillMount() {
     console.log(this.props);
 //get data fron typenscreen to see it its tru or false, will display progress bar if present 
-    if (this.props.testData.TS) {
+    // if (this.props.testData.TS) {
       var intervalId = setInterval(() => {
         this.setState({
           TSProgress: this.state.TSProgress + 1
@@ -49,12 +49,12 @@ class ProgressRadial extends Component {
         if (this.state.TSProgress >= 100) {
           clearInterval(intervalId);
         }
-      }, 2.5 * 1000);
-    }
+      }, .5 * 1000);
+    // }
 
 
 //get data fron confirm type to see it its tru or false, will display progress bar if present 
-if (this.props.testData.ConfTypeProgress){
+// if (this.props.testData.ConfTypeProgress){
  var intervalId2 = setInterval(() => {
    this.setState({
      ConfTypeProgress: this.state.ConfTypeProgress + 1
@@ -62,13 +62,13 @@ if (this.props.testData.ConfTypeProgress){
    if (this.state.ConfTypeProgress >= 100) {
      clearInterval(intervalId2);
    }
- }, 8.3 * 1000);
- }
+ }, .3 * 1000);
+//  }
    
 
  
 //get data fron DAT to see it its tru or false, will display progress bar if present 
-    if (this.props.testData.DAT) {
+    // if (this.props.testData.DAT) {
       var intervalId3 = setInterval(() => {
         this.setState({
           DATProgress: this.state.DATProgress + 1
@@ -76,11 +76,11 @@ if (this.props.testData.ConfTypeProgress){
         if (this.state.DATProgress >= 100) {
           clearInterval(intervalId3);
         }
-      }, 1 * 1000);
-    }
+      }, .2 * 1000);
+    // }
 
     //get data fron other test including( ELUTION, ABID, TITER, FUllxm) to see it its tru or false, will display progress bar if present 
-if (this.props.testData.ABID ||this.props.testData.Elution|| this.props.testData.Titer){
+// if (this.props.testData.ABID ||this.props.testData.Elution|| this.props.testData.Titer){
 
   var intervalId4 = setInterval(() => {
       this.setState({
@@ -89,19 +89,12 @@ if (this.props.testData.ABID ||this.props.testData.Elution|| this.props.testData
       if (this.state.OtherTestingProgress >= 100) {
         clearInterval(intervalId4);
       }
-    }, 1 * 1000);
+    }, .48 * 1000);
 
-}
+    // }
   
 
-    var intervalId5 = setInterval(() => {
-      this.setState({
-        OtherTestingProgress: this.state.OtherTestingProgress + 1
-      });
-      if (this.state.OtherTestingProgress >= 100) {
-        clearInterval(intervalId5);
-      }
-    }, 1 * 1000);
+
 
     var intervalId6 = setInterval(() => {
       this.setState({
@@ -110,8 +103,14 @@ if (this.props.testData.ABID ||this.props.testData.Elution|| this.props.testData
       if (this.state.ProductsProgress >= 100) {
         clearInterval(intervalId6);
       }
-    }, 1 * 1000);
-  }
+    }, .35 * 1000);
+
+  };
+
+
+
+
+
 
   render() {
     const {
