@@ -1,29 +1,28 @@
-# Create React Express App
+# Fast Blood  :hospital:
 
-## About This Boilerplate
+## Client-side tracking mechanism for rare or type specific blood products
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+## [ :arrow_forward: DEMO ON HEROKU](https://myapp-fastblood.herokuapp.com/index)
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+## Problem :question:
+#### At times medical staff have limited understanding of the difficulties in finding rare units of blood, particularly in clinically urgent situations. This app is to help the understanding and communication between blood providers, transfusion laboratories, clinicians, and patients.
 
-## Starting the app locally
+## Solution :hammer_and_wrench: 
+#### A plugin application medical staff can view  independently from any client-side workbench. This frees up the medical staff to carry on with other responsibilities while still being able to check the status of their testing and blood products for specific patients. 
 
-Start by installing front and backend dependencies. While in this directory, run the following command:
+## The Plugin :electric_plug:
+#### THe app will calculate the amount of time it takes to process all testing and products ordered and display the estimated completion time. The plugin application will also allow  medical staff to view the progress of each part that of testing that is complete as well as the reason why their testing  or search for rare or type sepcific blood may be taking longer than anticipated. 
 
-```
-npm install
-```
 
-This should install node modules within the server and the client folder.
-
-After both installations complete, run the following command in your terminal:
-
-```
-npm start
-```
-
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
-
-## Deployment (Heroku)
-
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+## Technology Used: :computer:
+* HTML
+* CSS 
+* React.js
+* Javascript 
+* Node 
+* mySQL 
+* Bootstrap
+* Heroku
+* ApexCharts.js
+* NPM packages
+  * Express,Sequelize
