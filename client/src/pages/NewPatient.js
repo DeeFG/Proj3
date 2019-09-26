@@ -16,6 +16,10 @@ class NewPatient extends Component {
     Gender:""
   };
 
+  
+
+
+  
   componentDidMount() {
     this.getPatient();
   }
@@ -35,7 +39,6 @@ class NewPatient extends Component {
   }; 
 
 
-
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -50,13 +53,15 @@ class NewPatient extends Component {
         LastName: this.state.LastName, 
         birth: this.state.birth , 
         Gender:this.state.Gender
-      })
-        .then(res => console.log(({
-          FirstName: this.state.FirstName, 
-          LastName: this.state.LastName, 
-          birth: this.state.birth , 
-          Gender:this.state.Gender
-        })))
+      
+      })  
+
+        .then( ()=> this.setState({
+          FirstName: "",
+          LastName: "",
+          birth: "",
+          Gender: ""
+        }))
         .catch(err => this.getPatient());
   };
 
@@ -112,6 +117,7 @@ class NewPatient extends Component {
               <FormBtn
                 disabled={!(this.state.FirstName && this.state.LastName && this.state.birth && this.state.Gender)}
                 onClick={this.handleNewPatientSubmit}
+   
               >
                 Save Patient
               </FormBtn>

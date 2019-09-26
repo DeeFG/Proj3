@@ -13,6 +13,7 @@ function App() {
     <Router>
       <div>
         <Switch>
+         <Route exact path="/" component={NewPatient} />
          <Route exact path="/" component={BloodBank} />
           <Route exact path="/patient/:id" component={SearchPatient} /> 
           <Route exact path="/newPatient" component ={NewPatient} /> 

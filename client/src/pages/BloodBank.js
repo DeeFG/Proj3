@@ -64,7 +64,7 @@ class Orders extends Component {
 
   getPatient = () => {
     API.getPatient()
-      .then(res =>
+      .then(() =>
         this.setState({
           id: "",
           FirstName: "",
@@ -76,7 +76,7 @@ class Orders extends Component {
       .catch(err => console.log(err));
   }; 
 
-  handleCheckboxChange = changeEvent => {
+  handleCheckboxCçhange = changeEvent => {
     const { name, value } = changeEvent.target;
     let newVal = this.state[name];
     if(!newVal.includes(value)){
